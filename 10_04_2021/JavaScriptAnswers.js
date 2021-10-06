@@ -25,11 +25,12 @@ function additivePersistence(a) {
     let c = 0;
     while(b >= 10){
         while(b > 0){
-            c += (b % 10);
-            b -= (b % 10);
-            b /= 10;
+            c = c + (b % 10);
+            b = b - (b % 10);
+            b = b / 10;
         }
         b = c;
+        c = 0;
         i++;
     }
 
@@ -42,13 +43,19 @@ function multiplicativePersistence(a) {
     let c = 1;
     while(b >= 10){
         while(b > 0){
-            c *= (b % 10);
-            b -= (b % 10);
-            b /= 10;
+            c = c * (b % 10);
+            b = b - (b % 10);
+            b = b / 10;
         }
         b = c;
+        c = 1;
         i++;
     }
 
     return i;
 }
+
+console.log(additivePersistence(1))
+console.log(additivePersistence(123456))
+
+console.log(multiplicativePersistence(123456))
