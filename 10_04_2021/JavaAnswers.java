@@ -26,7 +26,6 @@ public class CreditCard {
      */
 
     public static boolean validateCard(String id){
-        //String idStr = Long.toString(id);
 
         if(id.length() < 14 || id.length() > 19){
             return false;
