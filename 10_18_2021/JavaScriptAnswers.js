@@ -1,4 +1,6 @@
-// 1) This robot roams around a 2D grid. It starts at (0, 0) facing North. After each time it moves, the robot rotates 90 degrees clockwise. Given the amount the robot has moved each time, you have to calculate the robot's final position.
+// 1) This robot roams around a 2D grid. It starts at (0, 0) facing North. 
+//      After each time it moves, the robot rotates 90 degrees clockwise. 
+//      Given the amount the robot has moved each time, you have to calculate the robot's final position.
 
 // To illustrate, if the robot is given the movements 20, 30, 10, 40 then it will move:
 
@@ -25,13 +27,13 @@ function trackRobot(...move){
     let coordinates = [0,0]
     for(let m of move){
         if(i%4 === 0){
-            coordinates[0] += m;
-        } else if (i%4 === 1){
             coordinates[1] += m;
+        } else if (i%4 === 1){
+            coordinates[0] += m;
         } else if(i%4 === 2){
-            coordinates[0] -= m;
-        } else if(i%4 === 3){
             coordinates[1] -= m;
+        } else if(i%4 === 3){
+            coordinates[0] -= m;
         }
         i++;
     }
@@ -55,12 +57,19 @@ function trackRobot(...move){
 // The function should return false if the triangle with that dimensions is not possible.
 
 function doesTriangleFit(triA, triB){
-    if(triA[0]+triA[1] <= triA[2] || triA[1]+triA[2] <= triA[0] || triA[0]+triA[2] <= triA[1]){
+
+    if((triA[0]+triA[1] <= triA[2]) || (triA[1]+triA[2] <= triA[0]) || (triA[0]+triA[2] <= triA[1])){
         return false;
     }
-    if(triB[0]+triB[1] <= triB[2] || triB[1]+triB[2] <= triB[0] || triB[0]+triB[2] <= triB[1]){
+    if((triB[0]+triB[1] <= triB[2]) || (triB[1]+triB[2] <= triB[0]) || (triB[0]+triB[2] <= triB[1])){
         return false;
     }
 
-    
+    for(let i = 0; i < 3; i++){
+        if((triA[i%3] <= triB[0]) && (triA[(i+1)%3] <= triB[1]) && (triA[(i+2)%3] <= triB[2])){
+            return true
+        }
+    }
+
+    return false
 }
